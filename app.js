@@ -1,6 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const hbs = require("hbs");
+
+const port = process.env.PORT;
 
 // Handlebars
 app.set("view engine", "hbs");
@@ -34,4 +37,4 @@ app.get("*", (req, res) => {
   res.sendFile(__dirname + "/public/404.html");
 });
 
-app.listen(3000);
+app.listen(port);
