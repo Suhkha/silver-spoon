@@ -1,11 +1,24 @@
 const express = require("express");
 const app = express();
 
+app.set("view engine", "hbs");
+
 // Static content
 app.use(express.static("public"));
 
-app.get("/custom-route", (req, res) => {
-  res.send("Hello World");
+app.get("/", (req, res) => {
+  res.render("home", {
+    title: "HOME - HBS",
+    name: "Jessica Villa",
+  });
+});
+
+app.get("/generic", (req, res) => {
+  res.sendFile(__dirname + "/public/generic.html");
+});
+
+app.get("/elements", (req, res) => {
+  res.sendFile(__dirname + "/public/elements.html");
 });
 
 app.get("*", (req, res) => {
