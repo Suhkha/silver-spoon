@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+const hbs = require("hbs");
 
+// Handlebars
 app.set("view engine", "hbs");
+hbs.registerPartials(__dirname + "/views/partials");
 
 // Static content
 app.use(express.static("public"));
@@ -14,11 +17,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/generic", (req, res) => {
-  res.sendFile(__dirname + "/public/generic.html");
+  res.render("generic", {
+    title: "GENERIC",
+    name: "Jessica",
+  });
 });
 
 app.get("/elements", (req, res) => {
-  res.sendFile(__dirname + "/public/elements.html");
+  res.render("elements", {
+    title: "ELEMENTS",
+    name: "Jessica",
+  });
 });
 
 app.get("*", (req, res) => {
