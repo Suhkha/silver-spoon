@@ -1,8 +1,15 @@
 const express = require("express");
 const app = express();
 
-app.get("/", function (req, res) {
-  res.send("Hello ARMY");
+// Static content
+app.use(express.static("public"));
+
+app.get("/custom-route", (req, res) => {
+  res.send("Hello World");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/public/404.html");
 });
 
 app.listen(3000);
